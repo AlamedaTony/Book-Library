@@ -9,13 +9,11 @@
 </head>
 <body>
   <nav>
-    <img src="/images/camera.svg">
     <a href="/books" <%- title === 'All Books' ? 'class="active"' : '' %>>VIEW BOOKS</a>
     <% if (user) { %>
-      <a href="/books/new"	<%- title === 'Add Book' ? 'class="active"' : '' %>>
-      ADD BOOK</a>
+      <a href="/books/new"	<%- title === 'Add Book' ? 'class="active"' : '' %>>ADD BOOK</a>
       <a href="/authors/new" <%- title === 'Add Author' ? 'class="active"' : '' %>>ADD AUTHOR</a>
-      <a href="/authors" <%- title === "All Authors" ? "class"="active" : "" %>>ALL AUTHORS</a>
+      <a href="/authors" <%- title === "All Authors" ? 'class="active"' : "" %>>ALL AUTHORS</a>
       <a href="/logout">LOG OUT</a>
     <% } else { %>
       <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>

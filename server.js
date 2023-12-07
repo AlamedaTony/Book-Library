@@ -3,9 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const methodOverride = require("method-override")
+
+require('dotenv').config();
+
+require('./config/database');
+
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var booksRouter = require('./routes/books');
+const authorsRouter = require("./routes/authors");
 
 var app = express();
 
@@ -18,9 +25,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride("_method"));
+
+
+app.use(function(req,res,next) {
+  res.locals.user = { name: 'MOCKED' };
+  next();
+});
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/books', booksRouter);
+app.use("/", authorsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +52,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;
