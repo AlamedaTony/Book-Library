@@ -1,20 +1,9 @@
 <%- include('../partials/header') %>
 
-<table id="list">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% books.forEach(function(b) { %>
-        <tr>
-          <td><%= b.title %></td>
-          <td><a href="/books/<%= b._id %>">DETAILS</a></td>
-        </tr>
-        <% }); %>
-      </tbody>
-    </table>
+<section id="show-page">
+    <div>Book Title: </div>
+    <div><%= book.title %></div>
+    <div>Number of Pages: </div>
+    <div><%= book.pages %></div>
 
 <%- include('../partials/footer') %>

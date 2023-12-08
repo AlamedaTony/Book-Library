@@ -1,6 +1,12 @@
 <%- include('../partials/header') %>
 
-
+<form id="new-form" action="/books" method="POST">
+    <label>Book Title:</label>
+    <input type="text" name="title">
+    <label>Number of Pages:</label>
+    <input type="numer" name="pages">
+    <input type="submit" value="Add Book">
+  </form>
 
 
 <%- include('../partials/footer') %>
