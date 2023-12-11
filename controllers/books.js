@@ -6,11 +6,15 @@ module.exports = {
     show,
     new: newBook,
     create,
+    delete: deleteBook,
+    edit,
+
 }
 
 async function index(req, res) {
     // const books = [{title: "mock book 1", pages: 200, author: {name: "john smith", born: new Date().toISOString()}}]
-    const books = await Book.find({});
+    const books = await Book.find({}).populate("author");
+    console.log(books);
     res.render('books/index', { title: 'All Books', books });
   }
 
@@ -25,7 +29,7 @@ function newBook (req,res) {
     res.render("books/new", { title: "Add Book", errorMsg: "" });
   }
 
-  async function create(req, res) {
+async function create(req, res) {
     try {
       // Update this line because now we need the _id of the new movie
       const book = await Book.create(req.body);
@@ -36,4 +40,16 @@ function newBook (req,res) {
       console.log(err);
       res.render('books/new', { errorMsg: err.message });
     }
+  }
+
+async function deleteBook(req,res) {
+    const book = await Book.findById(req.params.id);
+    book.deleteOne(req.body);
+    res.render("books/index");
+}
+
+function edit(req,res) {
+    res.render("books/edit", {
+      
+    })
   }

@@ -11,10 +11,19 @@
     </thead>
     <tbody>
       <% books.forEach(function(b) { %>
+       <% console.log(b.author) %>
         <tr>
+            <form action="/books/<%= b._id %>?_method=DELETE"
+                class="delete-form" method="POST">
+                <button type="submit">X</button>
+              </form>
           <td><%= b.title %></td>
           <td><%= b.pages %></td>
-          <td><%= b.author.name %></td>
+          <div>
+          <% b.author.forEach(function(a) { %>
+            <td><%=a.name %></td>
+         <% }); %>
+          </div>
           <td><a href="/books/<%= b._id %>">DETAILS</a></td>
         </tr>
         <% }); %>
