@@ -8,7 +8,7 @@ module.exports = {
     create,
     delete: deleteBook,
     edit,
-
+    update,
 }
 
 async function index(req, res) {
@@ -48,8 +48,16 @@ async function deleteBook(req,res) {
     res.render("books/index");
 }
 
-function edit(req,res) {
-    res.render("books/edit", {
-      
-    })
+async function edit(req,res) {
+  const book = await Book.findById(req.params.id);
+  res.render("books/edit", { title: "Edit Book", book  });
   }
+
+function update(req,res) {
+  try {
+    
+  } catch (err) {
+    console.log(err);
+
+  }
+}

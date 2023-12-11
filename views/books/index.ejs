@@ -13,10 +13,6 @@
       <% books.forEach(function(b) { %>
        <% console.log(b.author) %>
         <tr>
-            <form action="/books/<%= b._id %>?_method=DELETE"
-                class="delete-form" method="POST">
-                <button type="submit">X</button>
-              </form>
           <td><%= b.title %></td>
           <td><%= b.pages %></td>
           <div>
@@ -25,6 +21,13 @@
          <% }); %>
           </div>
           <td><a href="/books/<%= b._id %>">DETAILS</a></td>
+          <td><a href="/books/<%= b._id %>/edit">EDIT</a></td>
+          <td>
+            <form action="/books/<%= b._id %>?_method=DELETE"
+              class="delete-form" method="POST">
+              <button type="submit">X</button>
+            </form>
+          </td>
         </tr>
         <% }); %>
       </tbody>

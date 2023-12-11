@@ -1,7 +1,8 @@
 <%- include('../partials/header') %>
 
-<form action="/books/<%= book.id %>?_method=PUT" method="POST" autocomplete="off">
-    <input type="text" name="book" value="<%= book.title%>">
+<form action="/books/<%= book._id %>?_method=PUT" method="POST" autocomplete="off">
+    <input type="text" name="title" value="<%= book.title%>">
+    <input type="number" name="pages" value="<%= book.pages%>">
     <button type="submit">Update Book</button>
   </form>
   

@@ -5,14 +5,18 @@
     <div><%= book.title %></div>
     <div>Number of Pages: </div>
     <div><%= book.pages %></div>
-
     <div>Author:</div>
-  <ul>
+    <div>
     <%- book.author.map(a => 
-      `<li>${a.name} <small>${a.born.toLocaleDateString()}</small></li>`
+      `${a.name} ${a.born.toLocaleDateString()}`
     ).join('') %>
-  </ul>
-  
+    </div>
+    <div>Author's Wikipedia</div>
+    <div>
+      <% book.author.forEach(a => { %>
+        <a href=`${a.wiki}`>Wiki</a>
+     <% }); %>
+    </div>
 </section>
 
 <form id="add-per-to-author" action="/books/<%= book._id %>/authors" method="POST">
