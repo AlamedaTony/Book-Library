@@ -26,5 +26,11 @@ CRUD on the book data, once logged in.
 
 ### Getting Started
 
-[Repository Link](https://github.com/AlamedaTony/Book-Library.git)
+[Repo](https://github.com/AlamedaTony/Book-Library.git)
 
+### Future Plans
+
+Future features to be implimented include:
+- Creating full CRUD for the author(reference) data
+- Accessing a 3rd party API to access book images
+- Adding a comment/review section for each book
