@@ -17,7 +17,7 @@ async function index(req, res) {
 
 async function addToAuthor(req, res) {
     const book = await Book.findById(req.params.id);
-    book.author.push(req.body.authorId);
+    book.author = req.body.authorId;
     await book.save();
     res.redirect(`/books/${book._id}`);
   }

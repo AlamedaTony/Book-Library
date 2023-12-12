@@ -9,10 +9,10 @@ const bookSchema = new Schema({
     pages: { 
         type: Number, 
         required: true },
-    author: [{
+    author: {
       type: Schema.Types.ObjectId,
       ref: "Author"
-  }],
+  },
  } ,{
     timestamps: true
   });

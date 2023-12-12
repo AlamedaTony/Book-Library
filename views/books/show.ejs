@@ -5,28 +5,27 @@
     <div><%= book.title %></div>
     <div>Number of Pages: </div>
     <div><%= book.pages %></div>
-    <div>Author:</div>
-    <div>
-    <%- book.author.map(a => 
-      `${a.name} ${a.born.toLocaleDateString()}`
-    ).join('') %>
-    </div>
-    <div>Author's Wikipedia</div>
-    <div>
-      <% book.author.forEach(a => { %>
-        <a href=`${a.wiki}`>Wiki</a>
-     <% }); %>
-    </div>
+    <% if (book.author) { %>
+      <div>Author:</div>
+      <div>
+        <%= book.author.name %>
+        <%=book.author.born.toLocaleDateString() %>
+      </div>
+      <div>Author's Wikipedia</div>
+      <div>
+        <a href="<%=book.author.wiki%>">Wiki</a>
+      </div>
+    <% }  %>
 </section>
-
-<form id="add-per-to-author" action="/books/<%= book._id %>/authors" method="POST">
-  <select name="authorId">
-   
-    <%- authors.map(a => 
-      `<option value="${a._id}">${a.name}</option>`
-    ).join('') %>
-  </select>
-  <button type="submit">Add Author</button>
-</form>
-
+<% if (!book.author) { %>
+  <form id="add-per-to-author" action="/books/<%= book._id %>/authors" method="POST">
+    <select name="authorId">
+    
+      <%- authors.map(a => 
+        `<option value="${a._id}">${a.name}</option>`
+      ).join('') %>
+    </select>
+    <button type="submit">Add Author</button>
+  </form>
+<% } %>
 <%- include('../partials/footer') %>

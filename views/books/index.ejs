@@ -16,9 +16,11 @@
           <td><%= b.title %></td>
           <td><%= b.pages %></td>
           <div>
-          <% b.author.forEach(function(a) { %>
-            <td><%=a.name %></td>
-         <% }); %>
+           <% if (b.author) { %>
+            <td><%=b.author.name %></td>
+           <% } else { %>
+            <td></td>
+          <% } %>
           </div>
           <td><a href="/books/<%= b._id %>">DETAILS</a></td>
           <td><a href="/books/<%= b._id %>/edit">EDIT</a></td>

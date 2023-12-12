@@ -20,7 +20,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     const book = await Book.findById(req.params.id).populate("author");
-    //console.log(book);
+    console.log(book);
     const authors = await Author.find({ _id: { $nin: book.author } }).sort('name');
     res.render('books/show', { title: 'Book Detail', book, authors });
   }
@@ -43,9 +43,12 @@ async function create(req, res) {
   }
 
 async function deleteBook(req,res) {
-    const book = await Book.findById(req.params.id);
-    book.deleteOne(req.body);
-    res.render("books/index");
+  try {
+    await Book.findByIdAndDelete(req.params.id)
+  } catch(err) {
+    console.log(err);
+  }
+  res.redirect("/books");
 }
 
 async function edit(req,res) {
@@ -53,11 +56,12 @@ async function edit(req,res) {
   res.render("books/edit", { title: "Edit Book", book  });
   }
 
-function update(req,res) {
+async function update(req,res) {
   try {
-    
+    const book = await Book.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    res.redirect(`/books/${book._id}`);
   } catch (err) {
     console.log(err);
-
+    res.redirect("/books");
   }
 }
