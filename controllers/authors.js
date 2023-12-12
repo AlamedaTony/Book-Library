@@ -9,7 +9,6 @@ module.exports = {
 }
 
 async function index(req, res) {
-    // const books = [{title: "mock book 1", pages: 200, author: {name: "john smith", born: new Date().toISOString()}}]
     const authors = await Author.find({}).sort("name");
     res.render('authors/index', { title: 'All Authors', authors });
   }
@@ -24,7 +23,6 @@ async function addToAuthor(req, res) {
 
 
 async function newAuthor(req, res) {
-    //Sort authors by their name
     const authors = await Author.find({}).sort('name');
     res.render('authors/new', { title: 'Add Author', authors });
   }
@@ -34,7 +32,6 @@ async function create(req, res) {
   req.body.born += 'T00:00';
   try {
     await Author.create(req.body);
-   // console.log(req.body);
   } catch (err) {
     console.log(err);
   }
